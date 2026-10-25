@@ -1,0 +1,6 @@
+aiohttp==3.10.5
+asyncpg==0.29.0
+tldextract==5.1.2
+nbformat==5.10.4
+pandas==2.2.3
+matplotlib==3.9.2

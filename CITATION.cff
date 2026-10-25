@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this software, cite this software release. Cite external datasets and the research manuscript separately."
+authors:
+  - family-names: "Sossou"
+    given-names: "Yao Amevi Amessinou"
+    affiliation: "Graz University of Technology (TU Graz)"
+title: "DNS Abuse Research Pipeline"
+version: 0.2.0
+date-released: 2026-10-24
+license: MIT
+repository-code: "https://github.com/soyames/dns-abuse-proportionality"

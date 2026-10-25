@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.git/
+.gitignore
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+data/raw/*
+data/processed/*

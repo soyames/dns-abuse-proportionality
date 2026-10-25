@@ -1,0 +1,16 @@
+# Local environment files and secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+
+# Local generated data snapshots; commit selectively if research policy permits.
+data/raw/*
+data/processed/*
+

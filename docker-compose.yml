@@ -1,0 +1,51 @@
+services:
+  db:
+    image: timescale/timescaledb:latest-pg16
+    container_name: dns_abuse_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: ${POSTGRES_DB:-dns_abuse_audit}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./sql/01_schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-dns_abuse_audit}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: dns_abuse_pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@soyames.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:?Set PGADMIN_PASSWORD in .env}
+    ports:
+      - "127.0.0.1:5050:80"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  pipeline:
+    build: .
+    container_name: dns_abuse_triage_pipeline
+    volumes:
+      - ./data:/app/data
+    environment:
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: ${POSTGRES_DB:-dns_abuse_audit}
+      URLHAUS_AUTH_KEY: ${URLHAUS_AUTH_KEY:-}
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:
