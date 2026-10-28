@@ -1,0 +1,21 @@
+[project]
+name = "dns-abuse-proportionality"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Yao Amevi A. Sossou", email = "47247401+soyames@users.noreply.github.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "ipykernel>=7.4.0",
+    "matplotlib>=3.11.2",
+    "pandas>=3.1.0",
+]
+
+[project.scripts]
+dns-abuse-proportionality = "dns_abuse_proportionality:main"
+
+[build-system]
+requires = ["uv_build>=0.13.0,<0.14.0"]
+build-backend = "uv_build"
