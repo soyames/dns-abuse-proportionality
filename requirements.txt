@@ -1,7 +1,8 @@
-# Runtime dependencies for pipeline.py (built into the Docker image).
-# The exploratory notebook (notebooks/exploratory_analysis.ipynb) uses only the
-# Python standard library and requires no additional packages.
-aiohttp==3.10.5
-asyncpg==0.29.0
-tldextract==5.1.2
+# Runtime dependencies for pipeline.py and scripts/, installed in the Docker image.
+# Keep these pins identical to the dependencies in pyproject.toml; a test checks that they match.
+# tldextract also fixes the bundled Public Suffix List, so changing it can change parsed domains.
+# The notebook additionally needs matplotlib and ipykernel (the "notebook" group in pyproject.toml).
+aiohttp==3.10.11
+asyncpg==0.30.0
 python-dateutil==2.9.0.post0
+tldextract==5.1.2

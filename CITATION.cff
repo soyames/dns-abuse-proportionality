@@ -5,7 +5,7 @@ authors:
     given-names: "Yao Amevi Amessinou"
     affiliation: "Graz University of Technology (TU Graz)"
 title: "DNS Abuse Research Pipeline"
-version: 0.2.0
-date-released: 2026-10-24
+version: 0.3.0
+date-released: 2026-11-06
 license: MIT
 repository-code: "https://github.com/soyames/dns-abuse-proportionality"
